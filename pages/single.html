@@ -1,0 +1,142 @@
+<%- include('partials/head.html') %>
+<style>
+    *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+html,body{
+    overflow-x: hidden;
+}
+
+/*################ HEADER ####################*/
+
+.container-site{
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+header{
+    height: 100px;
+    /* background-color: #ccc; */
+    border-bottom: 3px solid #263147;
+}
+
+
+    /* Estilo para o link */
+    .nav-item a {
+        display: inline-block;
+        background-color: #263147;
+        padding: 10px 13px;
+        border-radius: 10px;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        margin-top: 25px;
+    }
+    
+
+    /* Efeito de hover (quando o mouse passa por cima) */
+    .nav-item a:hover {
+        background-color:  #203c72;
+    }
+    #link-voltar i {
+        margin-right: 5px; 
+     }
+     .nav-item {
+        list-style: none;
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bg-image2 > img {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        max-height: 600px;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 8px solid #263147;
+        border-radius: 12px; 
+    }
+    .Empreendimento-sucesso {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 5px; 
+      }
+      .Palestrante{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 2px; 
+      }
+      .Local{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 2px; 
+      }
+      .Data{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 2px; 
+      }
+      .Descricao-da-Palestra{
+        padding: 0 2%;
+        width: 100%;
+        max-width: 700px;
+        color: #263147;
+        text-align: justify;
+        margin: 0 auto;
+        margin-top: 10px;
+      } 
+</style>
+<body>
+    <li class="nav-item">
+        <a id="link-voltar" href="../index.html">
+            <i class="fas fa-arrow-left"></i> Voltar para à página anterior
+        </a>
+    </li>
+    <section class="bg-img-palestra mt-3">
+        <div class="container-site">
+            <div class="bg-image2">
+                <img src="<%= palestraSingle.imagem %>" class="img-fluid" alt="Imagem responsiva">
+            </div><!-- bg-image2 -->
+        </div><!-- container-site -->
+    </section><!-- bg-img-palestra -->  
+
+    <div class="Empreendimento-sucesso">
+        <h2><%= palestraSingle.titulo %></h2>
+    </div>
+
+    <div class="Palestrante">        
+        <p>Palestrante(s):  <%= palestraSingle.palestrante %></p>     
+    </div>
+
+    <div class="Local">        
+        <p><%= palestraSingle.local %></p>     
+    </div>
+
+    <div class="Data">        
+        <p><%= palestraSingle.data %>   <%= palestraSingle.horario %></p>     
+    </div>
+    
+    <div class="Descricao-da-Palestra">        
+        <p><%= palestraSingle.conteudo %></p>     
+    </div>
+
+    <%- include('partials/footer.html')%>
+    
+</body>
+</html>

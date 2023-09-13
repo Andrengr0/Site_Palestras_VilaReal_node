@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faça o login</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    form{
+        height: 100%;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 2%;
+    }
+
+    form label{
+        display: block;
+        margin-top: 10px;
+    }
+
+    form input {
+        width: 100%;
+        margin-top: 3px;
+        height: 30px;
+        padding-left: 8px;
+        font-size: 16px;
+    }
+
+    
+</style>
+<body>
+    <header style="height: 80px;background-color: #263147;text-align: center;">
+        <h3 style="color: #ffffff;line-height: 80px;">Área do Administrador: faça o login!</h3>
+    </header>
+    <form method="post">
+        <label for="login">Usuário:</label>
+        <input type="text" name="login">
+
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha">
+
+        <input type="submit" name="acao" value="Logar!" style="margin-top: 15px;">
+    </form>
+    
+</body>
+</html>

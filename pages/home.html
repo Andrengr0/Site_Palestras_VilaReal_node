@@ -1,0 +1,279 @@
+<%- include('partials/head.html') %>
+
+<body>
+    <!-- ########################### Cabeçalho do site ########################## -->
+        <header id="inicio" target="id-inicio">
+            <div class="container-site">
+                <div class="row">
+                    <div class="logo col-md-3">
+                        <img class="img-logo" src="../../public/images/img_Logo.png">
+                    </div><!-- logo -->
+    
+                    <nav class="container-menu-desktop col-md-9">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item"><a href="#inicio" class="id-inicio">Início</a></li>
+                            <li class="nav-item"><a href="#palestras" class="id-palestras">Palestras</a></li>
+                            <li class="nav-item"><a href="#palestrantes" class="id-palestrantes">Palestrantes</a></li>
+                            <li class="nav-item"><a href="#quem-somos" class="id-quem-somos">Quem Somos</a></li>
+                            <li class="nav-item"><a href="#contato" class="id-contato">Contato</a></li>
+                        </ul><!-- nav -->
+                    </nav><!-- container-menu-desktop -->
+                    
+                    <nav class="container-menu-mobile col-md-9">
+                        <div class="icon-menu-content">
+                            <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
+                            <label class="icon-menu" for="check-icon">
+                                <div class="bar bar--1"></div>
+                                <div class="bar bar--2"></div>
+                                <div class="bar bar--3"></div>
+                            </label>
+                        </div><!-- icon-menu-content -->
+    
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a href="#inicio">Início</a></li>
+                            <li class="nav-item"><a href="#palestras">Palestras</a></li>
+                            <li class="nav-item"><a href="#palestrantes">Palestrantes</a></li>
+                            <li class="nav-item"><a href="#quem-somos">Quem Somos</a></li>
+                            <li class="nav-item"><a href="#contato">Contato</a></li>
+                        </ul><!-- nav -->
+                    </nav><!-- container-menu-mobile -->
+                    <div style="clear: both;"></div>
+                </div><!-- row -->
+            </div><!-- container-site -->
+        </header>
+    
+        <header-2>
+            <div class="header-2 container">
+                <h5>Vila Real Palestras</h6>
+                <nav class="container-menu-desktop-fixed col-md-9">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item"><a href="#inicio" class="id-inicio">Início</a></li>
+                        <li class="nav-item"><a href="#palestras" class="id-palestras">Palestras</a></li>
+                        <li class="nav-item"><a href="#palestrantes" class="id-palestrantes">Palestrantes</a></li>
+                        <li class="nav-item"><a href="#quem-somos" class="id-quem-somos">Quem Somos</a></li>
+                        <li class="nav-item"><a href="#contato" class="id-contato">Contato</a></li>
+                    </ul><!-- nav -->
+                </nav><!-- container-menu-desktop -->
+            </div><!-- header-2 container -->
+        </header-2>
+
+    <a href="#"><div class="icon-whatsapp-flutuante"></div><!-- icon-whatsapp-flutuante --></a>
+
+<!-- ########################### Section Imagem de Apresentação ########################## -->
+
+    <div class="bg-img-palestra mt-3">
+        <div class="container-fluid">
+            <div class="bg-image">
+                <div class="img-single">
+                    <div class="img-single-wrapper"></div><!-- img-single-wrapper -->
+                </div><!-- img-single -->
+
+                <div class="img-single">
+                    <div class="img-single-wrapper"></div><!-- img-single-wrapper -->
+                </div><!-- img-single -->
+
+                <div class="img-single">
+                    <div class="img-single-wrapper"></div><!-- img-single-wrapper -->
+                </div><!-- img-single -->
+                
+            </div><!-- bg-image -->
+        </div><!-- container-fluid -->
+    </div><!-- bg-img-palestra -->
+
+<!-- ########################### Section Palestras ########################## -->
+    <section class="palestras" id="palestras" target="id-palestras">
+        <%
+        var dataAtual = new Date().toLocaleString('pt-br').substr(0, 10);
+        var partesDataAtual = dataAtual.split("/");
+        var dataAtualNew = new Date(partesDataAtual[2], partesDataAtual[1] - 1, partesDataAtual[0]);
+        %>
+        <div class="container-site">
+
+            <div class="line-division mt-5">
+                <div class="line">
+                </div><!-- line -->
+                <h2>Palestras</h2>
+            </div><!-- line-division -->
+
+            <div class="box-palestras mt-4">
+
+                <!-- ################ CARD PALESTRA ################## -->
+
+                <% for(let i=0; i<palestras.length; i++) {
+                    let brDate = (palestras[i].data).split('-').reverse().join('/');
+                    let partesData = brDate.split("/");
+                    let data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
+                    if(data >= dataAtualNew){
+                    %>
+                        <a href="<%= palestras[i].slug %>">
+                            <div class="box-palestras-single mt-4 text-center">
+                                <div class="box-palestras-wrapper">
+                                    <img class="imagemP" src="<%=palestras[i].imagem%>">
+                                    <h6><%= palestras[i].titulo %></h6>
+                                    <p><%= palestras[i].local %> - <% if(data > dataAtualNew){ %> <%= palestras[i].data.split('-').reverse().join('/') %> <% }else{ %> HOJE <% } %> <%= palestras[i].horario %></p>
+                                </div><!-- box-palestras-wrapper -->
+                            </div><!-- box-palestras single -->
+                        </a>
+                 <% }
+                } %>
+            </div><!-- box-palestras -->
+
+            <!-- ################# CARD PALESTRA (FIM) ################## -->
+
+
+            <!-- ################ Seção de HISTÓRICO de Palestras passadas ################ -->
+
+            <historico class="historico">  <!-- <i class="fa-solid fa-chevron-down"></i> -->
+
+                <div class="btn-exibir-historico mt-4">
+                    <h3>Histórico de Palestras <i class="fa-solid fa-chevron-right"></i></h3>
+                    
+                </div><!-- btn-exibir historico -->
+
+                <div class="box-historico-palestras">
+
+                    <!-- ################ CARD PALESTRA ################## -->
+                    <% for(let i=0; i<palestras.length; i++) {
+                    let brDate = (palestras[i].data).split('-').reverse().join('/');
+                    let partesData = brDate.split("/");
+                    let data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
+                    if(data < dataAtualNew){
+                    %>
+                        <a href="<%= palestras[i].slug %>">
+                            <div class="box-palestras-single mt-4 text-center">
+                                <div class="box-palestras-wrapper">
+                                    <img src="<%=palestras[i].imagem%>">
+                                    <h6><%= palestras[i].titulo %></h6>
+                                    <p><%= palestras[i].local %> - <%= palestras[i].data.split('-').reverse().join('/') %> </p>
+                                </div><!-- box-palestras-wrapper -->
+                            </div><!-- box-palestras single -->
+                        </a>
+                    <% }
+                    } %>
+                
+                    <!-- ################# CARD PALESTRA (FIM) ################## -->
+
+                </div><!-- box-historico-palestras -->
+            </historico><!-- historico -->
+        </div><!-- container-site -->
+    </section><!-- palesatras -->
+
+<!-- ########################### Section Palestrantes ########################## -->
+    <section class="palestrantes mt-2" id="palestrantes" target="id-palestrantes">
+        <div class="container-site">
+            <div class="line-division mt-3">
+                <div class="line">
+                </div><!-- line -->
+                <h2>Palestrantes</h2>
+            </div><!-- line-division -->
+        </div><!-- container-site -->
+
+        <div class="container">
+            <div class="box-palestrantes mt-4">
+                
+                <% for(let i=0; i<palestrantes.length; i++) { %>
+                <div class="pl-1 box-palestrantes-single text-center">
+                    <div class="box-palestrantes-wrapper">
+                        <div class="box-palestrantes-full">
+                            <div class="box-img-palestrante" style="background-image: url(<%=palestrantes[i].imagem%>);"></div><!-- box-img-palestrante -->
+                            <h6 id="<%=palestrantes[i].id%>"><%= palestrantes[i].nome %> <p>+ Informações</p></h6>
+                        </div><!-- box-palestrantes-full -->
+                    </div><!-- box-palestrantes-wrapper -->
+                </div><!-- box-palestrantes-single -->
+            <% } %>
+
+            </div><!-- box-palestrantes -->
+            <h5 class="text-center mt-4">“Expandindo Horizontes, Inspirando Mentes”</h5>
+
+            <% for(let i=0; i<palestrantes.length; i++) { %>
+            <div class="box-modal palestrante-<%=palestrantes[i].id%>" style="display: none;">
+                <div class="palestrante-modal">
+                    <div class="icon-fechar-janela">
+                        <i class="fa-solid fa-x"></i>
+                    </div><!-- icon-fechar-janela -->
+                        
+                    <div class="container-palestrante">
+                        <img src="<%= palestrantes[i].imagem %>">
+                        <h6><%= palestrantes[i].nome %></h6>
+                        <p><%= palestrantes[i].biografia %></p>
+                    </div><!-- container-palestrante -->
+                </div><!-- palestrante-modal -->
+            </div><!-- box-modal palestrante-pl-1 -->
+        <% } %>
+
+        </div><!-- container-site -->
+    </section><!-- palesatrantes -->
+
+    <!-- ########################### Section Quem Somos ########################## -->
+    <section class="quem-somos" id="quem-somos" target="id-quem-somos">
+        <div class="container-site">
+
+            <div class="line-division mt-5">
+                <div class="line">
+                </div><!-- line -->
+                <h2>Quem Somos</h2>
+            </div><!-- line-division -->
+
+            <p>&nbsp&nbsp&nbsp&nbsp&nbsp Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in massa a dui luctus 
+                pulvinar. Sed vel semper ligula. Fusce ac ante vehicula, feugiat quam vitae, 
+                accumsan orci. Donec semper ante eu neque gravida rhoncus. Nullam tempor nulla id 
+                justo ullamcorper, et tincidunt massa efficitur. Mauris malesuada elit ac sapien 
+                rutrum rhoncus. Morbi id diam maximus, tincidunt tellus non, ultricies lorem. Donec 
+                tristique urna lorem, vitae suscipit velit vehicula nec. Nullam pretium eu risus ac 
+                egestas. Maecenas vitae tincidunt massa, vitae interdum augue. Duis dictum justo 
+                quis magna luctus, eget porta lacus suscipit. Fusce vitae dolor sit amet nulla 
+                sagittis porta.Maecenas vitae tincidunt massa, vitae interdum augue. Duis dictum 
+                justo quis magna luctus, eget porta lacus suscipit. Fusce vitae dolor sit amet nulla 
+                sagittis porta. Maecenas vitae tincidunt massa, vitae interdum augue. Duis dictum 
+                justo quis magna luctus, eget porta lacus suscipit. Fusce vitae dolor sit amet nulla 
+                sagittis porta.</p>
+        </div><!-- container-site -->
+    </section><!-- Quem Somos -->
+
+    <!-- ########################### Section Contato ########################## -->
+    <section class="contato" id="contato" target="id-contato">
+        <div class="container-site">
+
+            <div class="line-division mt-5">
+                <div class="line">
+                </div><!-- line -->
+                <h2>Contato</h2>
+            </div><!-- line-division -->
+
+            <div class="numero-whats">
+                <img src="../public/images/icon-whatsapp.png">
+                <p>Whatsapp: (83) 9 9984-9213</p>
+                <a href="#">Ou clique aqui para acessar diretamente</a>
+            </div><!-- numero-whats -->
+
+            <div class="email">
+                <i class="fa-solid fa-envelope"></i>
+                <p>palestrasvilareal@gmail.com</p>
+            </div><!-- email -->
+            
+        </div><!-- container-site -->
+    </section><!-- Contato -->
+
+    <div class="box-patrocinios">
+        <div class="container">
+            <h6>Apoio:</h6>
+            <div class="carrosel">
+                <div sr class="caixa__card cc__1"></div>
+                <div class="caixa__card cc__2"></div>
+                <div class="caixa__card cc__3"></div>
+                <div class="caixa__card cc__4"></div>
+                <div class="caixa__card cc__5"></div>
+            </div>
+        </div><!-- container -->
+    </div><!-- box-patrocinios -->
+
+    <%- include('partials/footer.html')%>
+
+    <script src="https://kit.fontawesome.com/99067914a7.js" crossorigin="anonymous"></script>
+    <script src="../public/js/jquery.js"></script>
+    <script src="../public/js/slick.js"></script>
+    <script src="../public/js/slider_responsivo.js"></script>
+    <script src="../public/js/functions.js"></script>
+
+</body>
+</html>

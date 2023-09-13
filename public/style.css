@@ -1,0 +1,903 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+
+html,body{
+    overflow-x: hidden;
+    scroll-behavior: smooth !important;
+}
+
+/*################ HEADER ####################*/
+
+.container-site{
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+header{
+    padding: 10px;
+    height: 100px;
+    /* border-bottom: 3px solid #263147; */
+}
+
+header-2{
+    display: none;
+    width: 100%;
+    height: 50px;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #263147;
+    border-bottom: 1px solid #ffffff;
+}
+
+header-2 h5{
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    color: #ffffff;
+    width: 29%;
+    font-family: 'Lusitana', 'Sans-serif';
+}
+
+.container-menu-desktop-fixed{
+    display: inline-block;
+    width: 70%;
+    right: 0;
+}
+
+.container-menu-desktop-fixed > .nav{
+    line-height: 50px;
+}
+
+.container-menu-desktop-fixed li{
+    margin-left: 35px;
+    font-weight: 300;
+    font-size: 15px;
+}
+.container-menu-desktop-fixed li a{
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.7s ease;
+}
+
+
+.img-logo{
+    height: 100px;
+}
+
+
+/* ##########  MENU DESKTOP ######### */
+.container-menu-desktop > .nav{
+    line-height: 100px;
+    text-align: right;
+}
+
+.container-menu-desktop li{
+    margin-left: 35px;
+    font-weight: 300;
+    font-size: 17px;
+}
+.container-menu-desktop .nav-item > a{
+    color: #263147;
+    transition: 0.7s ease;
+    text-decoration: none;
+}
+
+.container-menu-desktop li a:hover{
+    border-bottom: 3px solid #263147 !important;
+}
+
+.container-menu-desktop .id-inicio{
+    border-bottom: 3px solid #263147 !important;
+}
+
+.id-inicio:hover, 
+.id-palestras:hover, 
+.id-palestrantes:hover, 
+.id-quem-somos:hover, 
+.id-contato:hover{
+    border-bottom: 3px solid #ffffff !important; 
+}
+/* ##########  MENU MOBILE ######### */
+.container-menu-mobile{
+   display: none;
+}
+
+.icon-menu-content{
+    position: relative;
+    top: -80px;
+    right: 10px;
+    float: right;
+}
+
+.icon-menu {
+    --gap: 8px;
+    --height-bar: 2.5px;
+    --pos-y-bar-one: 0;
+    --pos-y-bar-three: 0;
+    --scale-bar: 1;
+    --rotate-bar-one: 0;
+    --rotate-bar-three: 0;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .bar {
+    position: relative;
+    height: var(--height-bar);
+    width: 100%;
+    border-radius: .5rem;
+    background-color: #263147;
+  }
+  
+  .bar--1 {
+    top: var(--pos-y-bar-one);
+    transform: rotate(var(--rotate-bar-one));
+    transition: top 200ms 100ms, transform 100ms;
+  }
+  
+  .bar--2 {
+    transform: scaleX(var(--scale-bar));
+    transition: transform 150ms 100ms;
+  }
+  
+  .bar--3 {
+    bottom: var(--pos-y-bar-three);
+    transform: rotate(var(--rotate-bar-three));
+    transition: bottom 200ms 100ms, transform 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu > .bar--1 {
+    transition: top 200ms, transform 200ms 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu > .bar--3 {
+    transition: bottom 200ms, transform 200ms 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu {
+    --pos-y-bar-one: calc(var(--gap) + var(--height-bar));
+    --pos-y-bar-three: calc(var(--gap) + var(--height-bar));
+    --scale-bar: 0;
+    --rotate-bar-one: 45deg;
+    --rotate-bar-three: -45deg;
+  }
+  /* FIM ICON-MENU */
+  
+.container-menu-mobile ul{
+    display: none;
+    text-align: center;
+    background-color: #263147;
+    color: #ffffff;
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container-menu-mobile li{
+    padding: 10px 0;
+    border-bottom: 1px solid #ffffff;
+}
+
+.container-menu-mobile li a, .container-menu-desktop li a{
+    text-decoration: none;
+}
+.container-menu-mobile li a{
+    color: #ffffff;
+}
+
+@media screen and (max-width: 768px){
+    .container-menu-desktop, header-2{
+        display: none !important;
+    }
+
+    .container-menu-mobile{
+        display: block;
+    }
+}
+
+/*################ SECTION BG-IMG-PALESTRA -- Imagem de apresentação no inicio do site ####################*/
+.bg-image {
+    width: 100%;
+}
+
+.bg-image .img-single{
+    display: inline-block;
+}
+
+.bg-image .img-single > .img-single-wrapper{
+    width: 99%;
+    border-radius: 10px;
+    padding-top: 60%;
+    background-image: url(../public/images/background_Luciana_no_palco.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.slick-dotted ul{
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+    margin-top: 8px;
+}
+
+.slick-dotted li{
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 5px;
+}
+
+.slick-dotted button:focus{
+    outline: 0;
+}
+
+.slick-dotted li button{
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    color: #d8d8d8;
+    border-width: 0;
+    opacity: 1;
+    background: #d8d8d8;
+    cursor: pointer;
+}
+
+li.slick-active button{
+    background: #688293;
+    color: #688293;
+}
+
+.slick-slide:focus{
+    outline: none;
+}
+
+/*################ LINE_DIVISION => Estilização das linhas de divisão que separa cada seção ####################*/
+
+.line-division{
+    position: relative;
+}
+.line-division > .line{
+    width: 100%;
+    border-top: 3px solid #263147;
+}
+
+.line-division > h2{
+    text-align: center;
+    font-size: 26px;
+    position: absolute;
+    top: -18px;
+    background-color: #ffffff;
+    padding-left: 20px;
+    padding-right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.palestrantes .line-division{
+    position: relative;
+}
+.palestrantes .line-division > .line{
+    width: 100%;
+    border-top: 3px solid #ffffff;
+}
+
+.palestrantes .line-division > h2{
+    color: #ffffff;
+    text-align: center;
+    font-size: 26px;
+    position: absolute;
+    top: -18px;
+    background-color: #202020;
+    padding-left: 20px;
+    padding-right: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+@media screen and (max-width: 400px){
+    
+    .quem-somos .line-division > h2{
+        width: 64%;
+    }
+}
+
+/*################ SECTION ICON-WHATSAPP-FLUTUANTE -- Icone do Whatsapp flutuante da tela ####################*/
+.icon-whatsapp-flutuante{
+    width: 50px;
+    height: 50px;
+    background-image: url(../public/images/icon-whatsapp.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: fixed;
+    bottom: 1%;
+    right: 3px;
+    z-index: 999;
+}
+
+/*################ SECTION PALESTRAS -- Seção de palestras do site ####################*/
+
+.box-palestras, .box-historico-palestras{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-palestras > a, .box-historico-palestras > a{
+    margin: 0 auto;
+    text-decoration: none;
+    width: calc(100% / 4);
+}
+
+.box-palestras-single, .historico{
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    position: relative;
+    transition: 0.5s;
+}
+
+.box-palestras-single:hover{
+    scale: 1.1;
+}
+
+.box-palestras-wrapper{
+    padding-top: 95%;
+    border-radius: 15px;
+    border: 8px solid #263147;
+    background-color: #263147;
+    box-shadow: 4px 6px 10px #263147;
+    position: relative;
+}
+
+.box-palestras-wrapper > img{
+    position: absolute;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 100%;
+    height: 75%;
+    left: 0;
+    top: 0;
+}
+
+.box-palestras-wrapper > h6{
+    color: #ffffff;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.box-palestras-wrapper > p{
+    font-weight: 300;
+    font-size: 14px;
+    color: #ffffff;
+    margin-top: 0;
+    top: -10px;
+}
+
+.historico h3{
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 25px;
+    color: #263147;
+}
+
+.historico h3 > i{
+    vertical-align: bottom;
+    margin-left: 4px;
+}
+
+.btn-exibir-historico{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.check-icon-historico:checked + .icon-arrow-historico{
+    transform: rotate(90deg);
+  }
+
+.box-historico-palestras{
+    display: flex;
+}
+
+
+@media screen and (max-width: 1050px){
+    .box-palestras a, .box-historico-palestras a{
+        width: calc(100% / 3);
+    }
+}
+@media screen and (max-width: 850px){
+    .box-palestras a,
+    .box-historico-palestras a{
+        width: calc(90% / 2);
+    }
+}
+@media screen and (max-width: 650px){
+    .box-palestras a,
+    .box-historico-palestras a{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 580px){
+    .box-palestras a,
+    .box-historico-palestras a{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 480px){
+    .box-palestras a,
+    .box-historico-palestras a{
+        width: 80%;
+    }
+}
+
+
+/*################ SECTION PALESTRANTES -- Seção de perfil de Palestrantes ####################*/
+
+
+.box-img-palestrante{
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.palestrantes{
+    background-color: #202020;
+    padding: 20px 0; 
+}
+
+.box-palestrantes-single{
+    z-index: 999;
+    margin-top: 8px;
+    padding-right: 25px;
+    padding-left: 25px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.box-palestrantes-single .box-img-palestrante:hover{
+    scale: 1.05;
+    transition: 1s;
+}
+
+.box-palestrantes-wrapper{
+    position: relative;
+    padding-top: 115%;
+    border-radius: 9px;
+    border: 8px solid #ffffff;
+    background-color: #ffffff;
+    /* box-shadow: 2px 4px 4px #ffffff; */
+    max-width: 400px;
+}
+
+@media screen and (max-width: 1200px){
+    .box-palestrantes-full > .box-img-palestrante{
+        height: 70%;
+    }
+
+    .box-palestrantes-full > h6{
+        padding-bottom: 20px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .box-palestrantes-full > h6{
+        padding-bottom: 20px;
+        line-height: 10px;
+    }
+}
+
+.box-palestrantes-full{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.box-palestrantes-full > .box-img-palestrante{
+    width: 100%;
+    height: 85%;
+    left: 0;
+    top: 0;
+    border-radius: 9px;
+}
+
+.box-palestrantes-full > h6{
+    color: #263147;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.box-palestrantes-full h6 > p{
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.box-palestrantes{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.palestrantes h5{
+    color: #ffffff;
+    font-family: 'Lusitana', serif;
+}
+
+.slick-prev{
+    font-size: 40px;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 43%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.slick-next{
+    font-size: 40px;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 43%;
+    cursor: pointer;
+}
+
+.box-modal{
+    display: none;
+    padding: 0 3%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: rgba(38, 49, 71, 0.8);
+}
+
+.palestrante-modal{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    height: auto;
+    background-color: #ffffff;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px 4px #8EFF84;
+    position: relative;
+}
+
+.icon-fechar-janela{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #263147;
+    cursor: pointer;
+}
+
+.icon-fechar-janela i{
+    line-height: 30px;
+}
+
+.palestrante-modal .container-palestrante > img{
+    margin: 0 auto;
+    width: 100%;
+}
+.palestrante-modal .container-palestrante > p{
+    text-align: justify;
+    font-weight: 300;
+}
+.palestrante-modal .container-palestrante > h6{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight:400;
+}
+
+.palestrante-modal > .container-palestrante{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2%;
+}
+
+
+
+/*################ SECTION QUEM SOMOS ####################*/
+
+section.quem-somos p{
+    padding: 0 2%;
+    width: 100%;
+    max-width: 700px;
+    color: #263147;
+    text-align: justify;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+/*################ SECTION CONTATO ####################*/
+
+.numero-whats{
+    margin-top: 20px;
+    padding-left: 14%;
+}
+
+.numero-whats img, .numero-whats p{
+    display: inline-block;
+}
+
+.numero-whats img{
+    width: 35px;
+    height: 35px;
+}
+
+.numero-whats p{
+    vertical-align:text-top;
+    margin-left: 5px;
+    font-size: 17px;
+    color: #263147;
+}
+
+.numero-whats a{
+    position: relative;
+    display: block;
+    padding-left: 4%;
+    top: -5px;
+    font-size: 15px;
+}
+
+.email{
+    padding-left: 15%;
+    margin-top: 20px;
+    color: #263147;
+}
+
+.email i, .email p{
+    display: inline-block;
+}
+
+.email i{
+    font-size: 20px;
+}
+
+.email p{
+    position: relative;
+    margin-left: 5px;
+    top: -3px;
+}
+
+.box-patrocinios{
+    text-align: center;
+}
+
+.carrosel {
+    -webkit-perspective: 250px;
+    -moz-perspective: 250px;
+    width: 400px;
+    height: 200px;
+    top: 50px;
+    position: relative;
+    margin: 0 auto;
+}
+
+@-webkit-keyframes efeitoCarrosel {
+    from {
+        -webkit-transform: rotateY(360deg) translateZ(130px) rotateY(-360deg);
+        -moz-transform: rotateY(360deg) translateZ(130px) rotateY(-360deg);
+        z-index: 10;
+        opacity: 1
+    }
+
+    50% {
+        z-index: -10;
+    }
+
+    to {
+        -webkit-transform: rotateY(0deg) translateZ(130px) rotateY(0deg);
+        -moz-transform: rotateY(0deg) translateZ(130px) rotateY(0deg);
+        z-index: 10;
+        opacity: 1
+    }
+}
+
+@-moz-keyframes efeitoCarrosel {
+    from {
+        -moz-transform: rotateY(360deg) translateZ(130px) rotateY(-360deg);
+        z-index: 10;
+        opacity: 1
+    }
+
+    50% {
+        z-index: -10;
+    }
+
+    to {
+        -moz-transform: rotateY(0deg) translateZ(130px) rotateY(0deg);
+        z-index: 10;
+        opacity: 1
+    }
+}
+
+.caixa__card {
+    width: 90px;
+    height: 100px;
+    background-color: #ffffff;
+    position: absolute;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    top: 35px;
+    left: 150px;
+    font-size: 9px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .5);
+    text-align: center;
+    -webkit-animation-name: efeitoCarrosel;
+    -moz-animation-name: efeitoCarrosel;
+    -webkit-animation-duration: 20s;
+    -moz-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+.caixa__card:hover {
+    border: solid #4466cc 3px;
+    box-shadow: 0px 0px 10px #4466cc;
+}
+
+.caixa__card.cc__1 {
+    -webkit-animation-delay: -17s;
+    -moz-animation-delay: -17s;
+    background-image: url(../public/images/Imagem\ do\ WhatsApp\ de\ 2023-08-10\ à\(s\)\ 22.02.08.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.caixa__card.cc__2 {
+    -webkit-animation-delay: -13s;
+    -moz-animation-delay: -13s;
+    background-image: url(../public/images/Logo\ Pura\ Delícia.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.caixa__card.cc__3 {
+    -webkit-animation-delay: -9s;
+    -moz-animation-delay: -9s;
+    background-image: url(../public/images/LogoSítioCasaDeVó.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.caixa__card.cc__4 {
+    -webkit-animation-delay: -5s;
+    -moz-animation-delay: -5s;
+    background-image: url(../public/images/Imagem\ do\ WhatsApp\ de\ 2023-08-10\ à\(s\)\ 22.02.08.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.caixa__card.cc__5 {
+    -webkit-animation-delay: -1s;
+    -moz-animation-delay: -1s;
+    background-image: url(../public/images/Logo\ Pura\ Delícia.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+/* ################### FOOTER (RODAPÉ DO SITE) #################### */
+
+.informations-and-social{
+    margin-top: 50px;
+    background-color: #263147;
+    color: #ffffff;
+    padding: 30px 10px;
+}
+
+.informations-and-social h6, .informations-and-social p{
+    display: inline-block;
+}
+
+.informations-and-social h6{
+    margin-top: 10px;
+    font-size: 15px;
+    vertical-align: text-bottom;
+}
+
+.informations-and-social p{
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 5%;
+}
+
+.social{
+    text-align: right;
+    position: relative;
+}
+
+.social a{
+    margin: 0 5px;
+    padding-top: 15px;
+}
+
+.social a > img{
+    width: 40px;
+    height: 40px;
+}
+
+.direitos-autorais{
+    padding: 15px 0;
+}
+
+.direitos-autorais > .container{
+    position: relative;
+}
+
+.direitos-autorais h6{
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+}
+
+.direitos-autorais p{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.direitos-autorais p span{
+    color: #11FF62;
+}
+
+@media screen and (max-width: 790px){
+    
+    .direitos-autorais h6{
+        text-align: left;
+    }
+}
+@media screen and (max-width: 460px){
+    
+    .direitos-autorais h6{
+        text-align: center;
+    }
+    .direitos-autorais p{
+        position: relative;
+        width: 100%;
+        text-align: center;
+    }
+}
+

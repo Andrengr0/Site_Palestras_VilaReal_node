@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel administrador</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        header, .header-painel{
+            padding: 20px;
+            background-color: #263147;
+            color: #ffffff;
+            text-align: center;
+        }
+    
+        form{
+            padding: 10px;
+            margin: 20px 0;
+        }
+        form label{
+            font-size: 18px;
+        }
+    
+        form input, form textarea{
+            font-size: 15px;
+            width: 80%;
+            height: 40px;
+            border: 1px solid #ccc;
+            margin-top: 3px;
+            padding: 0 8px;
+        }
+    
+        form textarea{
+            height: 120px;
+        }
+    
+        form input[type=submit]{
+            width: 30%;
+            background-color: rgb(91, 90, 48);
+            color: #ffffff;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 15%;
+        }
+
+        form label{
+            display: block; 
+            margin-top: 10px;
+        }
+
+        .palestra-single{
+            font-size: 18px;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Cadastro de palestras</h2>
+    </header>
+
+    <form enctype="multipart/form-data" method="post" action="/admin/cadastro/palestra">
+        <label for="titulo_palestra">Título para a palestra:</label>
+        <input type="text" name="titulo_palestra" placeholder="ex.: Empreendimento de Sucesso" required>
+
+        <label for="local_palestra">Local da palestra:</label>
+        <input type="text" name="local_palestra" placeholder="ex.: Casa Vila Real" required>
+
+        <label for="data_palestra">Data da palestra:</label>
+        <input type="date" name="data_palestra" required style="width: 100%; max-width: 150px;">
+
+        <label for="horario_palestra">Horário da palestra:</label>
+        <input type="text" name="horario_palestra" placeholder="ex.: 17:00h" required>
+
+        <label for="palestrante">Palestrante(s):</label>
+        <input type="text" name="palestrante" placeholder="João Silva, José Luis..." required>
+
+        <label for="conteudo_palestra">Conteúdo da Palestra:</label>
+        <textarea name="conteudo_palestra" placeholder="A palestra trata de formas de empreender [...]" required></textarea>
+
+        <label for="arquivo">Escolha uma imagem para a palestra:  <span>formatos de arquivos suportados: .png,  .jpg,  .jpeg</span> </label>
+        <input type="file" name="arquivo" id="arquivo" onchange="validarTipoArquivo('arquivo')">
+
+        <label for="slug">link para a palestra (slug):</label>
+        <input type="text" name="slug" placeholder="empreendimento-de-sucesso" required>
+
+        <input type="submit" name="acao" value="Cadastrar palestra">
+    </form>
+    <br>
+
+
+    <div class="header-painel">
+        <h2>Palestras cadastradas:</h2>
+    </div>
+
+    
+        <% for(let i=0; i<palestras.length; i++) { %>
+            <div class="palestra-single" style="margin: 20px 10px; border: dashed 2px #8e8e8e; padding: 10px 10px; display: flex; justify-content: space-between;">
+                <p>Titulo: <%= palestras[i].titulo %></p>
+                <a href="/admin/deletar/palestra/<%=palestras[i].id +"/"+palestras[i].imagem%>">(DELETAR)</a>
+            </div>
+        <% } %>
+
+
+        <header style="margin-top: 50px;">
+            <h2>Cadastro de palestrantes</h2>
+        </header>
+    
+        <form enctype="multipart/form-data" method="post" action="/admin/cadastro/palestrante">
+            <label for="nome">Nome do palestrante:</label>
+            <input type="text" name="nome" placeholder="Digite aqui..." required>
+    
+            <label for="biografia">Biografia do palestrante:</label>
+            <textarea name="biografia" placeholder="Digite aqui..." required></textarea>
+    
+            <label for="arquivo_palestrante">Adicione uma imagem do palestrante:  <span>formatos de arquivos suportados: .png,  .jpg,  .jpeg</span> </label>
+            <input type="file" name="arquivo_palestrante" id="arquivo_palestrante" onchange="validarTipoArquivoPalestrante('arquivo')">
+    
+            <input type="submit" name="acao" value="Cadastrar palestrante">
+        </form>
+        <br>
+    
+    
+        <div class="header-painel">
+            <h2>Palestrantes cadastrados:</h2>
+        </div>
+    
+        
+            <% for(let i=0; i<palestrantes.length; i++) { %>
+                <div class="palestra-single" style="margin: 20px 10px; border: dashed 2px #8e8e8e; padding: 10px 10px; display: flex; justify-content: space-between;">
+                    <p>Nome: <%= palestrantes[i].nome %></p>
+                    <a href="/admin/deletar/palestrante/<%=palestrantes[i].id+"/"+palestrantes[i].imagem %>">(DELETAR)</a>
+                </div>
+            <% } %>
+
+    <script>
+        function validarTipoArquivo (seletorCampo){
+            let arquivo = document.getElementById('arquivo');
+            // console.log(arquivo.files[0].type);
+            const formatosAceitos = ["image/jpg", "image/jpeg", "image/png"]
+            if(formatosAceitos.includes(arquivo.files[0].type) == false){
+                arquivo.value = '';
+                alert("Erro: formato de arquivo de imagem inválido!")
+            }
+        }
+
+        function validarTipoArquivoPalestrante (seletorCampo){
+            let arquivo = document.getElementById('arquivo_palestrante');
+            // console.log(arquivo.files[0].type);
+            const formatosAceitos = ["image/jpg", "image/jpeg", "image/png"]
+            if(formatosAceitos.includes(arquivo.files[0].type) == false){
+                arquivo.value = '';
+                alert("Erro: formato de arquivo de imagem inválido!")
+            }
+        }
+    </script>
+</body>
+</html>
