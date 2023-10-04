@@ -14,7 +14,7 @@ html,body{
 
 .container-site{
     width: 100%;
-    max-width: 1280px;
+    max-width: 1920px;
     margin: 0 auto;
     padding: 0 2%;
 }
@@ -45,6 +45,7 @@ header-2 h5{
     width: 29%;
     font-family: 'Lusitana', 'Sans-serif';
 }
+
 
 .container-menu-desktop-fixed{
     display: inline-block;
@@ -566,67 +567,6 @@ li.slick-active button{
     top: 43%;
     cursor: pointer;
 }
-
-.box-modal{
-    display: none;
-    padding: 0 3%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 3;
-    background-color: rgba(38, 49, 71, 0.8);
-}
-
-.palestrante-modal{
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    height: auto;
-    background-color: #ffffff;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 4px 4px 10px 4px #8EFF84;
-    position: relative;
-}
-
-.icon-fechar-janela{
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    color: #ffffff;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    background-color: #263147;
-    cursor: pointer;
-}
-
-.icon-fechar-janela i{
-    line-height: 30px;
-}
-
-.palestrante-modal .container-palestrante > img{
-    margin: 0 auto;
-    width: 100%;
-}
-.palestrante-modal .container-palestrante > p{
-    text-align: justify;
-    font-weight: 300;
-}
-.palestrante-modal .container-palestrante > h6{
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight:400;
-}
-
-.palestrante-modal > .container-palestrante{
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2%;
-}
-
 
 
 /*################ SECTION QUEM SOMOS ####################*/
