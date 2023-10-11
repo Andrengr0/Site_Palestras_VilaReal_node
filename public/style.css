@@ -59,7 +59,7 @@ header-2 h5{
 
 .container-menu-desktop-fixed li{
     margin-left: 35px;
-    font-weight: 300;
+    font-weight: 300 !important;
     font-size: 15px;
 }
 .container-menu-desktop-fixed li a{
@@ -75,6 +75,10 @@ header-2 h5{
 
 
 /* ##########  MENU DESKTOP ######### */
+.container-menu-desktop{
+    position: relative;
+    top: 20px;
+}
 .container-menu-desktop > .nav{
     line-height: 100px;
     text-align: right;
@@ -91,21 +95,65 @@ header-2 h5{
     text-decoration: none;
 }
 
-.container-menu-desktop li a:hover{
-    border-bottom: 3px solid #263147 !important;
-}
-
 .container-menu-desktop .id-inicio{
     border-bottom: 3px solid #263147 !important;
 }
 
-.id-inicio:hover, 
-.id-palestras:hover, 
-.id-palestrantes:hover, 
-.id-quem-somos:hover, 
-.id-contato:hover{
-    border-bottom: 3px solid #ffffff !important; 
+
+.container-menu-desktop .nav:last-child {
+    margin-right: 0;
 }
+
+.container-menu-desktop-fixed .nav .nav-item-link,
+.container-menu-desktop .nav .nav-item-link{
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: capitalize;
+    display: block;
+    position: relative;
+    line-height: 40px;
+    letter-spacing: .4px;
+}
+
+.container-menu-desktop .nav .nav-item-link{
+    color: #091d3e;
+}
+
+.container-menu-desktop-fixed .nav .nav-item-link{
+    color: #ffffff;
+}
+
+.container-menu-desktop .nav .nav-item-link:before{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    display: block;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    background-color: #091d3e;
+}
+
+.container-menu-desktop-fixed .nav .nav-item-link:before{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    display: block;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    background-color: #ffffff;
+}
+
+.container-menu-desktop-fixed .nav .nav-item-link:hover:before,
+.container-menu-desktop .nav .nav-item-link:hover:before{
+    width: 100%;
+}
+
 /* ##########  MENU MOBILE ######### */
 .container-menu-mobile{
    display: none;
@@ -183,7 +231,7 @@ header-2 h5{
     color: #ffffff;
     position: absolute;
     width: 100%;
-    top: 100px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -588,7 +636,7 @@ section.quem-somos p{
     padding-left: 14%;
 }
 
-.numero-whats img, .numero-whats p{
+.numero-whats img, .numero-whats .wp{
     display: inline-block;
 }
 

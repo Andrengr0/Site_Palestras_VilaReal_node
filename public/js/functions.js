@@ -86,53 +86,10 @@ $(()=>{
             let offSetTop = ($(href).offset().top)-160;
             // console.log(offSetTop);
             $('html,body').animate({'scrollTop':offSetTop});
+            $('#check-icon').prop( "checked", false );
+            $('.container-menu-mobile > ul').hide(300);
             return false;
         })
     })
 
-    // Definindo posições da janela Modal dos palestrantes
-    // var altura = ($('body').height()) + 5;
-    // $(function(){
-    //     $('.box-modal').css('height',altura+'px')
-    // })
-    // var offSetPalestrantes = ($('.palestrantes').offset().top)-100;
-    // if($(window).width() < 582){
-    //     offSetPalestrantes = ($('.palestrantes').offset().top)-1000;
-    // }
-    // $(function(){
-    //     $('.palestrante-modal').css('margin-top',offSetPalestrantes+'px')
-    // })
-
-    // var divPalestrantes = $('.box-palestrantes-single');
-
-    // console.log(divPalestrantes);
-        
-
-    // Função para abrir e fechar janela Modal dos palestrantes
-    // $(function(){
-    //     abrirJanela();
-    //     verificarCliqueFechar();
-    //     var elementID;
-
-    //     function abrirJanela(){
-    //         $('.box-palestrantes-single h6').click(function(e){
-    //             var palestranteID = $(this).attr("id");
-    //             // console.log("ID do palestrante:", palestranteID);
-    //             e.stopPropagation();
-    //             elementID = $(".palestrante-"+palestranteID)
-    //             // console.log("Elemento com classe .palestrante-"+palestranteID+":", elementID);
-    //             elementID.fadeIn();
-    //         });
-    //     }
-    
-    //     function verificarCliqueFechar(){
-    //         var el = $('body,.icon-fechar-janela');
-    //         el.click(function(){
-    //             elementID.fadeOut();
-    //         })
-    //         $('.palestrante-modal').click(function(e){
-    //             e.stopPropagation();
-    //         })
-    //     }
-    // });
 })
