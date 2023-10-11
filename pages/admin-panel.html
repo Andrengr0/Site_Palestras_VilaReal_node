@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel administrador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
     <style>
         *{
             margin: 0;
@@ -66,7 +67,7 @@
         <h2>Cadastro de palestras</h2>
     </header>
 
-    <form enctype="multipart/form-data" method="post" action="/admin/cadastro/palestra">
+    <form id="form-palestra" enctype="multipart/form-data" method="post" action="/admin/cadastro/palestra">
         <label for="titulo_palestra">Título para a palestra:</label>
         <input type="text" name="titulo_palestra" placeholder="ex.: Empreendimento de Sucesso" required>
 
@@ -86,12 +87,15 @@
         <textarea name="conteudo_palestra" placeholder="A palestra trata de formas de empreender [...]" required></textarea>
 
         <label for="arquivo">Escolha uma imagem para a palestra:  <span>formatos de arquivos suportados: .png,  .jpg,  .jpeg</span> </label>
-        <input type="file" name="arquivo" id="arquivo" onchange="validarTipoArquivo('arquivo')">
+        <input type="file" name="arquivo" id="arquivo" onchange="validarTipoArquivo('arquivo')"> 
+
+        <!-- Apresentar o preview da imagem -->
+        <div id="preview"></div>
 
         <label for="slug">link para a palestra (slug):</label>
         <input type="text" name="slug" placeholder="empreendimento-de-sucesso" required>
 
-        <input type="submit" name="acao" value="Cadastrar palestra">
+        <input id="cadastrar_palestra" type="submit" name="acao" value="Cadastrar palestra">
     </form>
     <br>
 
@@ -131,7 +135,6 @@
         <div class="header-painel">
             <h2>Palestrantes cadastrados:</h2>
         </div>
-    
         
             <% for(let i=0; i<palestrantes.length; i++) { %>
                 <div class="palestra-single" style="margin: 20px 10px; border: dashed 2px #8e8e8e; padding: 10px 10px; display: flex; justify-content: space-between;">
@@ -140,11 +143,14 @@
                 </div>
             <% } %>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <script src="../public/js/custom.js"></script>
     <script>
         function validarTipoArquivo (seletorCampo){
             let arquivo = document.getElementById('arquivo');
             // console.log(arquivo.files[0].type);
-            const formatosAceitos = ["image/jpg", "image/jpeg", "image/png"]
+            const formatosAceitos = ["image/png"]
             if(formatosAceitos.includes(arquivo.files[0].type) == false){
                 arquivo.value = '';
                 alert("Erro: formato de arquivo de imagem inválido!")
@@ -154,7 +160,7 @@
         function validarTipoArquivoPalestrante (seletorCampo){
             let arquivo = document.getElementById('arquivo_palestrante');
             // console.log(arquivo.files[0].type);
-            const formatosAceitos = ["image/jpg", "image/jpeg", "image/png"]
+            const formatosAceitos = ["image/png"]
             if(formatosAceitos.includes(arquivo.files[0].type) == false){
                 arquivo.value = '';
                 alert("Erro: formato de arquivo de imagem inválido!")

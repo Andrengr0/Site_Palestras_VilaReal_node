@@ -115,10 +115,7 @@ app.get('/:slug',async(req,res)=>{
 
 
 app.post('/admin/cadastro/palestra', (req, res)=>{
-    // Implementar no Banco de Dados
-    // res.send("cadastrado com sucesso!")
-    // console.log(req.body);
-    // console.log(req.files);
+    
     let formato = req.files.arquivo.name.split('.');
     let imagem = '';
     let imgExtensao = formato[formato.length - 1];
@@ -137,6 +134,23 @@ app.post('/admin/cadastro/palestra', (req, res)=>{
     });
     res.redirect('/admin/login');
 })
+
+// app.post('/admin/cadastro/imagem', (req, res) => {
+//     const base64Data = req.body.imagemBase64;
+//     const fileName = new Date().getTime()+".png"; // Você pode ajustar a extensão conforme necessário
+//     const imagePath = path.join(__dirname+"/public/images_palestras_palestrantes/"+fileName);
+
+//     // Decodifique e salve a imagem
+//     fs.writeFile(imagePath, base64Data, 'base64', (err) => {
+//         if (err) {
+//             console.error('Erro ao salvar a imagem:', err);
+//             res.status(500).send('Erro ao salvar a imagem.');
+//         } else {
+//             res.json({ success: true, imagePath });
+//         }
+//     });
+// });
+
 
 
 app.post('/admin/cadastro/palestrante', (req, res)=>{

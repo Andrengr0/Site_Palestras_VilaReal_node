@@ -18,7 +18,7 @@ $(()=>{
         autoplay: false,
         arrows: true,
         slidesToShow: 3,
-        centerPadding: '0px',
+        centerPadding: '10px',
         slidesToScroll: 2,
 
         responsive: [
