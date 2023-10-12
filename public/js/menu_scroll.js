@@ -12,15 +12,4 @@ $(()=>{
             return false;
         })
     })
-
-    const scales = ['1.1', '1.0']
-
-    var i = 0;
-    let interval = setInterval(function(){
-      $('.icon-whatsapp-flutuante').css('scale', '1.1');
-      setTimeout(function(){
-        $('.icon-whatsapp-flutuante').css('scale', '0.95');
-      },1000)
-    },2000);
-
 })
