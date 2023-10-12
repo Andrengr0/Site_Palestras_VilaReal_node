@@ -46,7 +46,6 @@ header-2 h5{
     font-family: 'Lusitana', 'Sans-serif';
 }
 
-
 .container-menu-desktop-fixed{
     display: inline-block;
     width: 70%;
@@ -65,7 +64,7 @@ header-2 h5{
 .container-menu-desktop-fixed li a{
     color: #ffffff;
     text-decoration: none;
-    transition: 0.7s ease;
+    font-size: 18px;
 }
 
 
@@ -85,9 +84,9 @@ header-2 h5{
 }
 
 .container-menu-desktop li{
-    margin-left: 35px;
+    margin-left: 30px;
     font-weight: 300;
-    font-size: 17px;
+  
 }
 .container-menu-desktop .nav-item > a{
     color: #263147;
@@ -96,7 +95,7 @@ header-2 h5{
 }
 
 .container-menu-desktop .id-inicio{
-    border-bottom: 3px solid #263147 !important;
+    border-bottom: 2px solid #263147 !important;
 }
 
 
@@ -106,21 +105,23 @@ header-2 h5{
 
 .container-menu-desktop-fixed .nav .nav-item-link,
 .container-menu-desktop .nav .nav-item-link{
-    font-size: 15px;
-    font-weight: 400;
     text-transform: capitalize;
     display: block;
     position: relative;
     line-height: 40px;
-    letter-spacing: .4px;
+    letter-spacing: 0.4px;
 }
 
 .container-menu-desktop .nav .nav-item-link{
     color: #091d3e;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .container-menu-desktop-fixed .nav .nav-item-link{
     color: #ffffff;
+    font-weight: 300;
+    font-size: 15px;
 }
 
 .container-menu-desktop .nav .nav-item-link:before{
@@ -655,7 +656,7 @@ section.quem-somos p{
 .numero-whats a{
     position: relative;
     display: block;
-    padding-left: 4%;
+    padding-left: 8px;
     top: -5px;
     font-size: 15px;
 }
@@ -878,6 +879,12 @@ section.quem-somos p{
     }
 }
 @media screen and (max-width: 460px){
+    .email{
+        padding-left: 2%;
+    }
+    .numero-whats{
+        padding-left: 2%;
+    }
     
     .direitos-autorais h6{
         text-align: center;
