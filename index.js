@@ -7,6 +7,9 @@ const path = require('path');
 
 const app = express();
 
+app.use(bodyParser.json({ limit: '50mb' })); // Aumente esse limite conforme necessário
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); // Aumente esse limite conforme necessário
+
 const fileupload = require('express-fileupload');
 
  const Palestras = require('./Palestras.js');
@@ -21,10 +24,7 @@ mongoose.connect('mongodb+srv://andrengr:plD3r5AJ252spvhE@cluster0.hasljf3.mongo
     console.log(err.message);
 })
 app.use(express.json())
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
+
 
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 360000 }}))
 
@@ -35,8 +35,8 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, '/pages'));
 
 app.use(fileupload({
-    useTempFiles: true,
-    tempFileDir: path.join(__dirname, 'temp')
+    useTempFiles: false //,
+    // tempFileDir: path.join(__dirname, 'temp')
 }));
 
 
@@ -114,72 +114,106 @@ app.get('/:slug',async(req,res)=>{
 })
 
 
-app.post('/admin/cadastro/palestra', (req, res)=>{
+// app.post('/admin/cadastro/palestra', (req, res)=>{
     
-    let formato = req.files.arquivo.name.split('.');
-    let imagem = '';
-    let imgExtensao = formato[formato.length - 1];
-    imagem = new Date().getTime()+"."+imgExtensao;
-    req.files.arquivo.mv(__dirname+"/public/images_palestras_palestrantes/"+imagem);
+//     let formato = req.files.arquivo.name.split('.');
+//     let imagem = '';
+//     let imgExtensao = formato[formato.length - 1];
+//     imagem = new Date().getTime()+"."+imgExtensao;
+//     req.files.arquivo.mv(__dirname+"/public/images_palestras_palestrantes/"+imagem);
 
-    Palestras.create({
-        titulo: req.body.titulo_palestra,
-        local: req.body.local_palestra,
-        data: req.body.data_palestra,
-        horario: req.body.horario_palestra,
-        palestrante: req.body.palestrante,
-        conteudo: req.body.conteudo_palestra,
-        imagem: "https://chatnode.shop/public/images_palestras_palestrantes/"+imagem,
-        slug: req.body.slug
-    });
-    res.redirect('/admin/login');
-})
-
-// app.post('/admin/cadastro/imagem', (req, res) => {
-//     const base64Data = req.body.imagemBase64;
-//     const fileName = new Date().getTime()+".png"; // Você pode ajustar a extensão conforme necessário
-//     const imagePath = path.join(__dirname+"/public/images_palestras_palestrantes/"+fileName);
-
-//     // Decodifique e salve a imagem
-//     fs.writeFile(imagePath, base64Data, 'base64', (err) => {
-//         if (err) {
-//             console.error('Erro ao salvar a imagem:', err);
-//             res.status(500).send('Erro ao salvar a imagem.');
-//         } else {
-//             res.json({ success: true, imagePath });
-//         }
+//     Palestras.create({
+//         titulo: req.body.titulo_palestra,
+//         local: req.body.local_palestra,
+//         data: req.body.data_palestra,
+//         horario: req.body.horario_palestra,
+//         palestrante: req.body.palestrante,
+//         conteudo: req.body.conteudo_palestra,
+//         imagem: "https://chatnode.shop/public/images_palestras_palestrantes/"+imagem,
+//         slug: req.body.slug
 //     });
-// });
+//     res.redirect('/admin/login');
+// })
+
+app.post('/admin/cadastro/palestra', async (req, res) => {
+    try {
+        const { titulo_palestra, local_palestra, data_palestra, horario_palestra, palestrante, conteudo_palestra, slug } = req.body;
+        const imagem = req.body.imagem_recortada; // Agora, o caminho da imagem já está no req.body
+
+        const palestra = await Palestras.create({
+            titulo: titulo_palestra,
+            local: local_palestra,
+            data: data_palestra,
+            horario: horario_palestra,
+            palestrante: palestrante,
+            conteudo: conteudo_palestra,
+            imagem: imagem, // Use o caminho da imagem recebido no req.body
+            slug: slug
+        });
+
+        res.redirect('/admin/login');
+    } catch (err) {
+        console.error('Erro ao cadastrar a palestra:', err);
+        res.status(500).send('Erro ao cadastrar a palestra.');
+    }
+});
 
 
 
-app.post('/admin/cadastro/palestrante', (req, res)=>{
-   
-    let formato = req.files.arquivo_palestrante.name.split('.');
-    let imagem = '';
-    let imgExtensao = formato[formato.length - 1];
-    imagem = new Date().getTime()+"."+imgExtensao;
-    req.files.arquivo_palestrante.mv(__dirname+"/public/images_palestras_palestrantes/"+imagem);
 
-    Palestrantes.create({
-        nome: req.body.nome,
-        biografia: req.body.biografia,
-        imagem: "https://chatnode.shop/public/images_palestras_palestrantes/"+imagem
+app.post('/admin/cadastro/imagem', (req, res) => {
+    const base64Data = req.body.imagemBase64;
+
+    // Analise a extensão da imagem a partir dos dados base64
+    const matches = base64Data.match(/^data:image\/([A-Za-z]+);base64,(.+)$/);
+    if (!matches || matches.length !== 3) {
+        return res.status(400).send('Formato de imagem inválido');
+    }
+
+    const imageExtension = matches[1];
+    const fileName = new Date().getTime() + '.' + imageExtension; // Use a extensão da imagem
+    const imagePath = path.join(__dirname, 'public', 'images_palestras_palestrantes', fileName);
+
+    // Decodifique e salve a imagem
+    fs.writeFile(imagePath, matches[2], 'base64', (err) => {
+        if (err) {
+            console.error('Erro ao salvar a imagem:', err);
+            res.status(500).send('Erro ao salvar a imagem.');
+        } else {
+            res.json({ success: true, imagePath });
+        }
     });
-    res.redirect('/admin/login');
-})
+});
+
+
+app.post('/admin/cadastro/palestrante', async (req, res) => {
+    try {
+        const { nome, biografia} = req.body;
+        const imagem = req.body.imagem_recortada_palestrante; // Agora, o caminho da imagem já está no req.body
+
+        const palestrante = await Palestrantes.create({
+            nome: nome,
+            biografia: biografia,
+            imagem: imagem // Use o caminho da imagem recebido no req.body
+        });
+
+        res.redirect('/admin/login');
+    } catch (err) {
+        console.error('Erro ao cadastrar o palestrante:', err);
+        res.status(500).send('Erro ao cadastrar o palestrante.');
+    }
+});
+
 
 app.get('/admin/deletar/palestra/:id/:imagem',(req,res)=>{
-    fs.unlink(__dirname+"/public/images_palestras_palestrantes/"+req.params.imagem, ()=>{}); 
-    // console.log(req.params.imagem);
+    fs.unlink(__dirname, 'public', 'images_palestras_palestrantes' ,req.params.imagem, ()=>{}); 
     Palestras.deleteOne({_id:req.params.id}).then(function(){
     res.redirect('/admin/login')
     });
-
 })
 
 app.get('/admin/deletar/palestrante/:id/:imagem',(req,res)=>{
-    fs.unlink(__dirname+"/public/images_palestras_palestrantes/"+req.params.imagem, ()=>{}); 
+    fs.unlink(__dirname+"/public/images_palestras_palestrantes/" ,req.params.imagem, ()=>{}); 
     // console.log(req.params.imagem);
     Palestrantes.deleteOne({_id:req.params.id}).then(function(){
         res.redirect('/admin/login')
@@ -210,7 +244,8 @@ app.get('/admin/login',(req,res)=>{
     }else{
         Palestras.find({}).sort({'_id': -1}).then(function(palestras){
             palestras= palestras.map(function(val){
-                let linkImage = (val.imagem).split("/");
+                let imagem = val.imagem;
+                let linkImage = imagem.split("/");
                 let formatLinkImage = linkImage[linkImage.length - 1];
                 return {
                     id: val._id,
