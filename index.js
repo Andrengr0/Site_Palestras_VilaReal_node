@@ -173,6 +173,7 @@ app.post('/admin/cadastro/imagem', (req, res) => {
     const imageExtension = matches[1];
     const fileName = new Date().getTime() + '.' + imageExtension; // Use a extensão da imagem
     const imagePath = path.join(__dirname, 'public', 'images_palestras_palestrantes', fileName);
+    const imagePathMod = 'https://chatnode.shop/public/images_palestras_palestrantes/'+ fileName;
 
     // Decodifique e salve a imagem
     fs.writeFile(imagePath, matches[2], 'base64', (err) => {
@@ -180,7 +181,7 @@ app.post('/admin/cadastro/imagem', (req, res) => {
             console.error('Erro ao salvar a imagem:', err);
             res.status(500).send('Erro ao salvar a imagem.');
         } else {
-            res.json({ success: true, imagePath });
+            res.json({ success: true, imagePathMod });
         }
     });
 });
@@ -205,19 +206,27 @@ app.post('/admin/cadastro/palestrante', async (req, res) => {
 });
 
 
-app.get('/admin/deletar/palestra/:id/:imagem',(req,res)=>{
-    fs.unlink(__dirname, 'public', 'images_palestras_palestrantes' ,req.params.imagem, ()=>{}); 
-    Palestras.deleteOne({_id:req.params.id}).then(function(){
-    res.redirect('/admin/login')
+app.get('/admin/deletar/palestra/:id/:imagem', (req, res) => {
+    fs.unlink(__dirname+'/public/images_palestras_palestrantes/'+req.params.imagem, (err) => {
+        if (err) {
+            console.error('Erro ao excluir o arquivo:', err);
+        }
+        Palestras.deleteOne({ _id: req.params.id }).then(function () {
+            res.redirect('/admin/login');
+        });
     });
 })
 
+
 app.get('/admin/deletar/palestrante/:id/:imagem',(req,res)=>{
-    fs.unlink(__dirname+"/public/images_palestras_palestrantes/" ,req.params.imagem, ()=>{}); 
-    // console.log(req.params.imagem);
+    fs.unlink(__dirname+'/public/images_palestras_palestrantes/'+req.params.imagem, (err) => {
+        if (err) {
+            console.error('Erro ao excluir o arquivo:', err);
+        }
     Palestrantes.deleteOne({_id:req.params.id}).then(function(){
         res.redirect('/admin/login')
         });
+    })
 })
 
 

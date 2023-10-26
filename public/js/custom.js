@@ -77,7 +77,7 @@ $(()=>{
             data: { imagemBase64 },
             success: function (response) {
                 // A resposta do servidor conterá o caminho da imagem
-                const imagePath = response.imagePath;
+                const imagePath = response.imagePathMod;
         
                 // Você pode usar imagePath como o caminho da imagem no formulário
                 // e enviá-lo junto com outros dados do formulário
@@ -160,7 +160,7 @@ $(()=>{
             data: { imagemBase64 },
             success: function (response) {
                 // A resposta do servidor conterá o caminho da imagem
-                const imagePath = response.imagePath;
+                const imagePath = response.imagePathMod;
         
                 // Você pode usar imagePath como o caminho da imagem no formulário
                 // e enviá-lo junto com outros dados do formulário
