@@ -1,5 +1,15 @@
 $(()=>{
 
+    $('.palestra-single button').click(function(){
+        let idPalestra = $(this).attr('id');
+        $('.'+idPalestra).css('display','block');
+
+        $('#btn-cancelar').click(function(){
+            $('.'+idPalestra).css('display','none');
+        })
+        return false;
+    })
+
     $('.btn-cadastrar-palestra').click(function(){
         $('#form-palestra').fadeIn();
 
@@ -24,15 +34,15 @@ $(()=>{
     
         // O recipiente interno do coppie. A parte visível da imagem
         viewport: {
-            width: 200,
-            height: 220,
+            width: 320,
+            height: 300,
             type: 'square'
         },
     
         // O recipiente externo do cortador
         boundary: {
-            width: 300,
-            height: 320
+            width: 360,
+            height: 340
         }
     
     });
@@ -108,15 +118,15 @@ $(()=>{
     
         // O recipiente interno do coppie. A parte visível da imagem
         viewport: {
-            width: 200,
-            height: 220,
+            width: 260,
+            height: 270,
             type: 'square'
         },
     
         // O recipiente externo do cortador
         boundary: {
             width: 300,
-            height: 320
+            height: 310
         }
     
     });

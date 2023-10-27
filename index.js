@@ -106,7 +106,7 @@ app.get('/:slug',async(req,res)=>{
         }else{
             res.redirect('/')
         }
-        
+
     } catch (err) {
         console.error("Ocorreu um erro:", err);
         res.status(500).send("Erro ao buscar a palestra.");
@@ -137,7 +137,8 @@ app.get('/:slug',async(req,res)=>{
 
 app.post('/admin/cadastro/palestra', async (req, res) => {
     try {
-        const { titulo_palestra, local_palestra, data_palestra, horario_palestra, palestrante, conteudo_palestra, slug } = req.body;
+        const slug = new Date().getTime()+'0';
+        const { titulo_palestra, local_palestra, data_palestra, horario_palestra, palestrante, conteudo_palestra } = req.body;
         const imagem = req.body.imagem_recortada; // Agora, o caminho da imagem já está no req.body
 
         const palestra = await Palestras.create({
@@ -157,9 +158,6 @@ app.post('/admin/cadastro/palestra', async (req, res) => {
         res.status(500).send('Erro ao cadastrar a palestra.');
     }
 });
-
-
-
 
 app.post('/admin/cadastro/imagem', (req, res) => {
     const base64Data = req.body.imagemBase64;
@@ -229,6 +227,16 @@ app.get('/admin/deletar/palestrante/:id/:imagem',(req,res)=>{
     })
 })
 
+app.get('/admin/logout', (req, res) => {
+    req.session.destroy(err => {
+      if (err) {
+        console.error('Erro ao encerrar a sessão:', err);
+        res.status(500).send('Erro ao encerrar a sessão.');
+      } else {
+        res.redirect('/'); // Redirecione para a página inicial ou qualquer outra página desejada
+      }
+    });
+});  
 
 app.post("/admin/login", async (req, res) => {
     try {

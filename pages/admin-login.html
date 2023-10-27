@@ -33,6 +33,15 @@
         font-size: 16px;
     }
 
+    .btn-mostrar-senha{
+        position: relative;
+        top: -25px;
+        margin-left: 77%;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #1664ff;
+    }
     
 </style>
 <body>
@@ -44,10 +53,30 @@
         <input type="text" name="login">
 
         <label for="senha">Senha:</label>
-        <input type="password" name="senha">
+        <input class="senha" type="password" name="senha">
+        <button class="btn-mostrar-senha" id="mostrar-senha">Mostrar</button>
 
-        <input type="submit" name="acao" value="Logar!" style="margin-top: 15px;">
+        <input type="submit" name="acao" value="Logar!" style="margin-top: 15px; cursor: pointer;">
     </form>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var senha = $('.senha');
+            var mostrarSenha = $('#mostrar-senha');
+
+            mostrarSenha.click(function(e) {
+                e.preventDefault(); // Evita o envio do formulário
+
+                if (senha.attr("type") === "password") {
+                    senha.attr("type", "text");
+                    mostrarSenha.text("Ocultar")
+                } else {
+                    senha.attr("type", "password");
+                    mostrarSenha.text("Mostrar")
+                }
+            });
+        });
+    </script>
 </body>
 </html>
