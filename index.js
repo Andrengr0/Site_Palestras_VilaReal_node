@@ -25,7 +25,6 @@ mongoose.connect('mongodb+srv://andrengr:plD3r5AJ252spvhE@cluster0.hasljf3.mongo
 })
 app.use(express.json())
 
-
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 360000 }}))
 
 app.engine('html', require('ejs').renderFile);
@@ -114,27 +113,6 @@ app.get('/:slug',async(req,res)=>{
 })
 
 
-// app.post('/admin/cadastro/palestra', (req, res)=>{
-    
-//     let formato = req.files.arquivo.name.split('.');
-//     let imagem = '';
-//     let imgExtensao = formato[formato.length - 1];
-//     imagem = new Date().getTime()+"."+imgExtensao;
-//     req.files.arquivo.mv(__dirname+"/public/images_palestras_palestrantes/"+imagem);
-
-//     Palestras.create({
-//         titulo: req.body.titulo_palestra,
-//         local: req.body.local_palestra,
-//         data: req.body.data_palestra,
-//         horario: req.body.horario_palestra,
-//         palestrante: req.body.palestrante,
-//         conteudo: req.body.conteudo_palestra,
-//         imagem: "https://chatnode.shop/public/images_palestras_palestrantes/"+imagem,
-//         slug: req.body.slug
-//     });
-//     res.redirect('/admin/login');
-// })
-
 app.post('/admin/cadastro/palestra', async (req, res) => {
     try {
         const slug = new Date().getTime()+'0';
@@ -171,7 +149,7 @@ app.post('/admin/cadastro/imagem', (req, res) => {
     const imageExtension = matches[1];
     const fileName = new Date().getTime() + '.' + imageExtension; // Use a extensão da imagem
     const imagePath = path.join(__dirname, 'public', 'images_palestras_palestrantes', fileName);
-    const imagePathMod = 'https://chatnode.shop/public/images_palestras_palestrantes/'+ fileName;
+    const imagePathMod = 'https://vilarealpalestras.com.br/public/images_palestras_palestrantes/'+ fileName;
 
     // Decodifique e salve a imagem
     fs.writeFile(imagePath, matches[2], 'base64', (err) => {
